@@ -68,6 +68,7 @@ body {
     margin: 0;
     
 }
+
 #banner{
     width: 100%;
     opacity: 0;
@@ -91,54 +92,32 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
    
 }
-#GRILLEproduit{
+#gridproduit {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 30px;
-    z-index: 2;
+    gap: 15px;
+    padding: 20px;
 }
-#produit-card{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    
-}
-#im{
-    width: 100%;
-    height: auto;
+
+#gridproduit .photo {
+    width: 300px;
+    height: 370px;
     object-fit: cover;
+    display: block;
 }
-@media screen and (max-width: 768px) {
-
-    #banner {
+@media (max-width: 768px) {
+    #gridproduit {
         width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+        gap: 15px;
     }
 
-    #hero {
-        width: 100%;
-        height: auto;
-    }
-
-    #GRILLEproduit {
-        width: 100%;
-        padding: 10px;
-    }
-
-    #produit-card {
-        width: 200px;
-    }
-
-    #im {
-        width: 100%;
-        height: 250px;
+    #gridproduit .photo {
+        width: 150px;
+        height: 190px;
         object-fit: cover;
-    }
-
-    #Accueil {
-        font-size: 24px;
     }
 }
 
@@ -155,11 +134,12 @@ body {
         <h1 id="Acceuil">Bienvenu dans notre boutique✨</h1>
        
     </div>
-    <div id="GRILLEproduit">
-        <div class="produit-card"><img class="im" src="photo1.jpeg" alt="photo1"></div>
-        <div class="produit-card"><img class="im" src="photo2.jpeg" alt="photo2"></div>
-        <div class="produit-card"><img class="im" src="photo3.jpeg" alt="photo3"></div>
-        <div class="produit-card"><img class="im" src="photo4.jpeg" alt="photo4"></div>
+    <div id="gridproduit">
+        <div class="photo"><img class="photo" src="photo1.jpeg" alt="photo"></div>
+         <div class="photo"><img class="photo" src="photo2.jpeg" alt="photo"></div>
+          <div class="photo"><img class="photo" src="photo3.jpeg" alt="photo"></div>
+           <div class="photo"><img class="photo" src="photo4.jpeg" alt="photo"></div>
+        
 
     </div>
     <script>
