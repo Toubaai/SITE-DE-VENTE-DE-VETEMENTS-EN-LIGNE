@@ -107,119 +107,82 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    #gridproduit {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-        gap: 15px;
-    }
 
-    #gridproduit .photo {
-        width: 150px;
-        height: 190px;
-        object-fit: cover;
+@media screen and (max-width: 768px) {
+
+    html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
     }
-    /* 📱 VERSION TÉLÉPHONE */
-@media (max-width: 768px) {
 
     /* BANNIÈRE */
     #banner {
         width: 100%;
+        height: 180px;
+        position: relative;
         overflow: hidden;
     }
 
     #banner a {
         width: 100%;
+        height: 100%;
         display: block;
     }
 
     #hero {
         width: 100%;
-        height: 200px;
+        height: 100%;
         object-fit: cover;
         display: block;
     }
 
-    /* TEXTE SUR LA BANNIÈRE */
+    /* TEXTE DE LA BANNIÈRE */
     #Acceuil {
         position: absolute;
-        margin: 0;
-        top: 100px;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
+        margin: 0;
         width: 90%;
         text-align: center;
-        font-size: 24px;
+        font-size: 22px;
         color: white;
-        z-index: 2;
     }
 
-    /* PRODUITS */
+    /* LES 4 PRODUITS */
     #gridproduit {
         width: 100%;
+        height: calc(100vh - 180px);
+        padding: 5px;
+        margin: 0;
         box-sizing: border-box;
+
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 10px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 5px;
     }
 
     #gridproduit > .photo {
         width: 100%;
-        height: auto;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
 
-    #gridproduit .photo img {
+    #gridproduit > .photo img {
         width: 100%;
-        height: 220px;
+        height: 100%;
         object-fit: cover;
+        display: block;
     }
 
-    /* FOOTER / PARTIE DU BAS */
+    /* CACHER LE FOOTER SUR TÉLÉPHONE */
     #hautpage {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        text-align: center;
+        display: none;
     }
-
-    /* LOGO */
-    #logocontainer {
-        width: 70px;
-        height: 70px;
-    }
-
-    #logoimage {
-        width: 70px;
-        height: 70px;
-    }
-
-    /* LIENS */
-    #liens {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-    }
-
-    #liens a {
-        font-size: 15px;
-    }
-
-    /* ICÔNES */
-    #icones {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-    }
-
-    #icones a {
-        font-size: 15px;
-    }
-}
 }
 
     </style>
