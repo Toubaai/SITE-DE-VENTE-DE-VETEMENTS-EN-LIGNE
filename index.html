@@ -5,187 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #hautpage{
+        #container-article{
+             display: flex;
+    align-items: center;
+    gap: 30px;
+        }
+        #produit-card{
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 40px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-
-        }
-        #logocontainer{
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-        }
-        #logoimage{
-           
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            border-radius: 50%;
-
-        }
-        #liens{
-            gap: 20px;
-            display: flex;
-        
-        }
-        #liens a{
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
-            color: #c8a2c8;
-        }
-        #icones{
-            display: flex;
-            gap: 20px;
-        }
-        #icones a{
-            text-decoration: none;
-            color: #c8a2c8;
-            font-size: 16px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        #icones a:hover{
-            color: #ffd700;
-        }
-        #hero {
-    width: 100%;
-    min-height: 300px;
-    display: block;
-    transition: transform 0.6s ease;
-}
-
-#hero:hover {
-    transform: scale(1.03);
-}
-
-body {
-    background-image: url('backgroundheader.jpeg');
-    margin: 0;
-    
-}
-
-#banner{
-    width: 100%;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-#banner a{
-    
-    width: 100%;
-    min-height: 300px;
-    display: block;
-    position: relative;
-}
-#Acceuil{
-    margin-top: 50px;
-    margin-bottom: 300px;
-    margin-left: 300px;
-    z-index: 2;
-    font-size: 48px;
-    font-weight: bold;
-    position: absolute;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
-   
-}
-#gridproduit {
-    display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15px;
-    padding: 20px;
-}
-
-#gridproduit .photo {
-    width: 300px;
-    height: 370px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+        }
+        #im{
+            width: 100%;
+    height: auto;
     object-fit: cover;
-    display: block;
+        }
+        .retour {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8b5e5e;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    #gridproduit {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    #gridproduit .photo {
-        width: 150px;
-        height: 190px;
-        object-fit: cover;
-    }
+.retour:hover {
+    transform: translateX(-8px);
+    background-color: #6f4545;
+}
+body{
+    color: #c8a2c8;
+}
+#prix{
+    position: absolute;
+    color: red;
+    top: 20px;
+    left: 20px;
+}
+#Taille{
+    position: absolute;
+    color: red;
+     top: 45px;
+    left: 20px;
 }
 
+#btn{
+    z-index: 2;
+     position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #c8a2c8;
+    transition: color 0.3s ease;
+}
+#btn :hover{
+    color: blue;
+}
     </style>
-  
 </head>
 <body>
-    
-    <div id="banner">
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I1.jpeg" alt="photo">
+            <h3 id="prix">4000 FCFA</h3>
+            <p id="Taille">Taille: L,XL,M</p>
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I2.jpeg" alt="photo">
+            <h3 id="prix">prix: 3500 FCFA</h3>
+            <p id="Taille">Taille: Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I3.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I4.jpeg" alt="photo">
+             <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+            
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
         
-        <a href="Articles.html">
-           <img id="hero" src="banniere.jpeg" alt="Nouvelle Collection Femme AD CLOTHES" >
-        </a>
-        <h1 id="Acceuil">Bienvenu dans notre boutique✨</h1>
+    </div>
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I5.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3500 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I6.jpeg" alt="photo">
+             <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I7.jpeg" alt="photo">
+            <h3 id="prix">Prix: 2000 FCFA</h3>
+            <p id="Taille"> Taille:Standard'</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('2000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I8.jpeg" alt="photo">
+            <h3 id="prix">Prix:3000 FCFA </h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+    </div>
+    <div id="container-article">
+        <div id="produit-card"><img id="im" src="I10.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I11.jpeg" alt="photo">
+             <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I20.jpeg" alt="photo">
+            <h3 id="prix">Prix: 7500 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('7500 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I12.jpeg" alt="photo">
+            <h3 id="prix">Prix:3000 FCFA </h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+    </div>
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I13.jpeg" alt="photo">
+            <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+            
+            <button id="btn" onclick="ajouterAuPanier('4000FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I14.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
        
     </div>
-    <div id="gridproduit">
-        <div class="photo"><img class="photo" src="photo1.jpeg" alt="photo"></div>
-         <div class="photo"><img class="photo" src="photo2.jpeg" alt="photo"></div>
-          <div class="photo"><img class="photo" src="photo3.jpeg" alt="photo"></div>
-           <div class="photo"><img class="photo" src="photo4.jpeg" alt="photo"></div>
-        
-
+    <div>
+        <a href="index.html" class="retour">← Retour</a>
     </div>
     <script>
-        // 1. On liste les différents messages à faire défiler
-const messages = [
-    "Bienvenue dans notre boutique ✨ ",
-    "Découvrez notre Nouvelle Collection Femme 👗",
-    "Profitez de -20% sur tout le site 🔥"
-];
+        const bouton = document.getElementById("btnRetour");
 
-let index = 0;
-const h1Element = document.getElementById("Acceuil");
+bouton.addEventListener("click", function() {
+    document.body.classList.add("animation-retour");
 
-// 2. Fonction qui change le texte toutes les 3 secondes (3000 millisecondes)
-function changerTexteDyn() {
-    index = (index + 1) % messages.length; // Passe au message suivant en boucle
-    h1Element.textContent = messages[index];
-}
-
-// Lance la fonction en boucle toutes les 3 secondes
-setInterval(changerTexteDyn, 3000);
-window.addEventListener("load", function() {
-    const banniere = document.querySelector("#banner");
-    if (banniere) {
-        banniere.style.opacity = "1";
-    }
+    setTimeout(function() {
+        window.location.href = "index.html";
+    }, 500);
 });
+let panier = [];
+
+function ajouterAuPanier(prix){
+    panier.push({
+        
+        prix:prix
+    })
+
+    console.log(panier);
+}
     </script>
 </body>
-<footer>
-        <section id="hautpage">
-            <div id="logocontainer">
-                <img id ="logoimage" src="logo.jpeg" alt="image">
-            </div>
-             <!--Liens de navigation-->
-            <div id="liens">
-                    <a href="index.html">Acceuil</a>
-                    <a href="contact.html">Contacts</a>
-                    <a href="Articles.html">Services</a>
-             </div>
-             <!--Icones-->
-             <div id="icones">
-                <a href="#">🔍 recherche</a>
-                <a href="#">👥 compte</a>
-                <a href="#">🛍️ Panier</a>
-             </div>
-</footer>
 </html>
