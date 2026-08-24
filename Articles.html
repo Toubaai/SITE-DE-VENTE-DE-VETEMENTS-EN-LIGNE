@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container-article{
+             display: flex;
+    align-items: center;
+    gap: 30px;
+        }
+        #produit-card{
+            display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+        }
+        #im{
+            width: 100%;
+    height: auto;
+    object-fit: cover;
+        }
+        .retour {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #8b5e5e;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
 
+.retour:hover {
+    transform: translateX(-8px);
+    background-color: #6f4545;
+}
+body{
+    color: #c8a2c8;
+}
+#prix{
+    position: absolute;
+    color: red;
+    top: 20px;
+    left: 20px;
+}
+#Taille{
+    position: absolute;
+    color: red;
+     top: 45px;
+    left: 20px;
+}
+
+#btn{
+    z-index: 2;
+     position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #c8a2c8;
+    transition: color 0.3s ease;
+}
+#btn :hover{
+    color: blue;
+}
+    </style>
+</head>
+<body>
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I1.jpeg" alt="photo">
+            <h3 id="prix">4000 FCFA</h3>
+            <p id="Taille">Taille: L,XL,M</p>
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I2.jpeg" alt="photo">
+            <h3 id="prix">prix: 3500 FCFA</h3>
+            <p id="Taille">Taille: Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I3.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I4.jpeg" alt="photo">
+             <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+            
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        
+    </div>
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I5.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3500 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I6.jpeg" alt="photo">
+             <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I7.jpeg" alt="photo">
+            <h3 id="prix">Prix: 2000 FCFA</h3>
+            <p id="Taille"> Taille:Standard'</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('2000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I8.jpeg" alt="photo">
+            <h3 id="prix">Prix:3000 FCFA </h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+          
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+    </div>
+    <div id="container-article">
+        <div id="produit-card"><img id="im" src="I10.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I11.jpeg" alt="photo">
+             <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('4000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I20.jpeg" alt="photo">
+            <h3 id="prix">Prix: 7500 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('7500 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I12.jpeg" alt="photo">
+            <h3 id="prix">Prix:3000 FCFA </h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+    </div>
+    <div id="container-article">
+         <div id="produit-card"><img id="im" src="I13.jpeg" alt="photo">
+            <h3 id="prix">Prix: 4000 FCFA</h3>
+            <p id="Taille"> Taille: L,XL,M</p>
+            
+            <button id="btn" onclick="ajouterAuPanier('4000FCFA',' L,XL,M')">Ajouter au panier</button>
+        </div>
+        <div id="produit-card"><img id="im" src="I14.jpeg" alt="photo">
+            <h3 id="prix">Prix: 3000 FCFA</h3>
+            <p id="Taille"> Taille:Standard</p>
+           
+            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+        </div>
+       
+    </div>
+    <div>
+        <a href="index.html" class="retour">← Retour</a>
+    </div>
+    <script>
+        const bouton = document.getElementById("btnRetour");
+
+bouton.addEventListener("click", function() {
+    document.body.classList.add("animation-retour");
+
+    setTimeout(function() {
+        window.location.href = "index.html";
+    }, 500);
+});
+let panier = [];
+
+function ajouterAuPanier(prix){
+    panier.push({
+        
+        prix:prix
+    })
+
+    console.log(panier);
+}
+    </script>
+</body>
+</html>
