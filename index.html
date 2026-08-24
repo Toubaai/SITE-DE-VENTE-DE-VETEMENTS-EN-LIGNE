@@ -1,188 +1,710 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>AD CLOTHES</title>
+
     <style>
-        #container-article{
-             display: flex;
-    align-items: center;
-    gap: 30px;
+
+        /* =========================
+           RÉGLAGES GÉNÉRAUX
+        ========================= */
+
+        * {
+            box-sizing: border-box;
         }
-        #produit-card{
-            display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-        }
-        #im{
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
             width: 100%;
-    height: auto;
-    object-fit: cover;
         }
-        .retour {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #8b5e5e;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
 
-.retour:hover {
-    transform: translateX(-8px);
-    background-color: #6f4545;
-}
-body{
-    color: #c8a2c8;
-}
-#prix{
-    position: absolute;
-    color: red;
-    top: 20px;
-    left: 20px;
-}
-#Taille{
-    position: absolute;
-    color: red;
-     top: 45px;
-    left: 20px;
-}
+        body {
+            background-image: url("backgroundheader.jpeg");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
 
-#btn{
-    z-index: 2;
-     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #c8a2c8;
-    transition: color 0.3s ease;
-}
-#btn :hover{
-    color: blue;
-}
+
+        /* =========================
+           BANNIÈRE
+        ========================= */
+
+        #banner {
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        #banner a {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        #hero {
+            width: 100%;
+            height: 400px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        #hero:hover {
+            transform: scale(1.02);
+        }
+
+
+        /* =========================
+           TEXTE SUR LA BANNIÈRE
+        ========================= */
+
+        #Acceuil {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 90%;
+
+            margin: 0;
+
+            text-align: center;
+
+            font-size: 48px;
+
+            font-weight: bold;
+
+            color: white;
+
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           PRODUITS
+        ========================= */
+
+        #gridproduit {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            padding: 20px;
+
+        }
+
+        .produit {
+
+            width: 100%;
+
+            overflow: hidden;
+
+        }
+
+        .produit .photo {
+
+            width: 100%;
+
+            height: 370px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.3s ease;
+
+        }
+
+        .produit .photo:hover {
+
+            transform: scale(1.03);
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            width: 100%;
+        }
+
+        #hautpage {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 20px 40px;
+
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        /* LOGO */
+
+        #logocontainer {
+
+            width: 80px;
+
+            height: 80px;
+
+            border-radius: 50%;
+
+            flex-shrink: 0;
+
+        }
+
+        #logoimage {
+
+            width: 80px;
+
+            height: 80px;
+
+            object-fit: contain;
+
+            border-radius: 50%;
+
+        }
+
+
+        /* LIENS */
+
+        #liens {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 20px;
+
+        }
+
+        #liens a {
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            color: #c8a2c8;
+
+            transition: color 0.3s ease;
+
+        }
+
+        #liens a:hover {
+
+            color: #ffd700;
+
+        }
+
+
+        /* ICÔNES */
+
+        #icones {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+        #icones a {
+
+            text-decoration: none;
+
+            color: #c8a2c8;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition: color 0.3s ease;
+
+        }
+
+        #icones a:hover {
+
+            color: #ffd700;
+
+        }
+
+
+        /* =========================
+           📱 TÉLÉPHONE
+        ========================= */
+
+        @media screen and (max-width: 768px) {
+
+            /* BANNIÈRE */
+
+            #banner {
+
+                width: 100%;
+
+                height: 180px;
+
+            }
+
+            #banner a {
+
+                width: 100%;
+
+                height: 100%;
+
+                display: block;
+
+            }
+
+            #hero {
+
+                width: 100%;
+
+                height: 180px;
+
+                object-fit: cover;
+
+            }
+
+
+            /* TEXTE */
+
+            #Acceuil {
+
+                top: 50%;
+
+                left: 50%;
+
+                width: 90%;
+
+                font-size: 22px;
+
+                transform: translate(-50%, -50%);
+
+            }
+
+
+            /* =====================
+               PRODUITS 2 × 2
+            ===================== */
+
+            #gridproduit {
+
+                width: 100%;
+
+                display: grid;
+
+                grid-template-columns: repeat(2, 1fr);
+
+                gap: 6px;
+
+                padding: 6px;
+
+                margin: 0;
+
+            }
+
+            .produit {
+
+                width: 100%;
+
+                overflow: hidden;
+
+            }
+
+            .produit .photo {
+
+                width: 100%;
+
+                height: 200px;
+
+                object-fit: cover;
+
+            }
+
+
+            /* =====================
+               FOOTER TÉLÉPHONE
+            ===================== */
+
+            #hautpage {
+
+                width: 100%;
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                justify-content: center;
+
+                gap: 15px;
+
+                padding: 20px 10px;
+
+                text-align: center;
+
+            }
+
+
+            /* LOGO */
+
+            #logocontainer {
+
+                width: 65px;
+
+                height: 65px;
+
+            }
+
+            #logoimage {
+
+                width: 65px;
+
+                height: 65px;
+
+            }
+
+
+            /* LIENS */
+
+            #liens {
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 10px;
+
+            }
+
+            #liens a {
+
+                font-size: 15px;
+
+            }
+
+
+            /* ICÔNES */
+
+            #icones {
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 10px;
+
+            }
+
+            #icones a {
+
+                font-size: 15px;
+
+            }
+
+        }
+
+
+        /* =========================
+           📱 TRÈS PETIT TÉLÉPHONE
+        ========================= */
+
+        @media screen and (max-width: 400px) {
+
+            #banner,
+            #hero {
+
+                height: 160px;
+
+            }
+
+            #Acceuil {
+
+                font-size: 19px;
+
+            }
+
+            #gridproduit {
+
+                gap: 4px;
+
+                padding: 4px;
+
+            }
+
+            .produit .photo {
+
+                height: 170px;
+
+            }
+
+            #hautpage {
+
+                gap: 12px;
+
+                padding: 15px 8px;
+
+            }
+
+            #liens a,
+            #icones a {
+
+                font-size: 14px;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
+
 <body>
-    <div id="container-article">
-         <div id="produit-card"><img id="im" src="I1.jpeg" alt="photo">
-            <h3 id="prix">4000 FCFA</h3>
-            <p id="Taille">Taille: L,XL,M</p>
-            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','L,XL,M')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I2.jpeg" alt="photo">
-            <h3 id="prix">prix: 3500 FCFA</h3>
-            <p id="Taille">Taille: Standard</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I3.jpeg" alt="photo">
-            <h3 id="prix">Prix: 3000 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-          
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I4.jpeg" alt="photo">
-             <h3 id="prix">Prix: 4000 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-            
-            <button id="btn" onclick="ajouterAuPanier('4000 FCFA','Standard')">Ajouter au panier</button>
-        </div>
-        
+
+
+    <!-- =========================
+         BANNIÈRE
+    ========================= -->
+
+    <div id="banner">
+
+        <a href="Articles.html">
+
+            <img
+                id="hero"
+                src="banniere.jpeg"
+                alt="Nouvelle Collection Femme AD CLOTHES"
+            >
+
+        </a>
+
+        <h1 id="Acceuil">
+            Bienvenue dans notre boutique ✨
+        </h1>
+
     </div>
-    <div id="container-article">
-         <div id="produit-card"><img id="im" src="I5.jpeg" alt="photo">
-            <h3 id="prix">Prix: 3500 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-          
-            <button id="btn" onclick="ajouterAuPanier('3500 FCFA','Standard')">Ajouter au panier</button>
+
+
+
+    <!-- =========================
+         PRODUITS
+    ========================= -->
+
+    <div id="gridproduit">
+
+        <div class="produit">
+
+            <img
+                class="photo"
+                src="photo1.jpeg"
+                alt="Produit 1"
+            >
+
         </div>
-        <div id="produit-card"><img id="im" src="I6.jpeg" alt="photo">
-             <h3 id="prix">Prix: 3000 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
+
+
+        <div class="produit">
+
+            <img
+                class="photo"
+                src="photo2.jpeg"
+                alt="Produit 2"
+            >
+
         </div>
-        <div id="produit-card"><img id="im" src="I7.jpeg" alt="photo">
-            <h3 id="prix">Prix: 2000 FCFA</h3>
-            <p id="Taille"> Taille:Standard'</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('2000 FCFA','Standard')">Ajouter au panier</button>
+
+
+        <div class="produit">
+
+            <img
+                class="photo"
+                src="photo3.jpeg"
+                alt="Produit 3"
+            >
+
         </div>
-        <div id="produit-card"><img id="im" src="I8.jpeg" alt="photo">
-            <h3 id="prix">Prix:3000 FCFA </h3>
-            <p id="Taille"> Taille: L,XL,M</p>
-          
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
+
+
+        <div class="produit">
+
+            <img
+                class="photo"
+                src="photo4.jpeg"
+                alt="Produit 4"
+            >
+
         </div>
+
     </div>
-    <div id="container-article">
-        <div id="produit-card"><img id="im" src="I10.jpeg" alt="photo">
-            <h3 id="prix">Prix: 3000 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I11.jpeg" alt="photo">
-             <h3 id="prix">Prix: 4000 FCFA</h3>
-            <p id="Taille"> Taille: L,XL,M</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('4000 FCFA',' L,XL,M')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I20.jpeg" alt="photo">
-            <h3 id="prix">Prix: 7500 FCFA</h3>
-            <p id="Taille"> Taille: L,XL,M</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('7500 FCFA',' L,XL,M')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I12.jpeg" alt="photo">
-            <h3 id="prix">Prix:3000 FCFA </h3>
-            <p id="Taille"> Taille: L,XL,M</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA',' L,XL,M')">Ajouter au panier</button>
-        </div>
-    </div>
-    <div id="container-article">
-         <div id="produit-card"><img id="im" src="I13.jpeg" alt="photo">
-            <h3 id="prix">Prix: 4000 FCFA</h3>
-            <p id="Taille"> Taille: L,XL,M</p>
-            
-            <button id="btn" onclick="ajouterAuPanier('4000FCFA',' L,XL,M')">Ajouter au panier</button>
-        </div>
-        <div id="produit-card"><img id="im" src="I14.jpeg" alt="photo">
-            <h3 id="prix">Prix: 3000 FCFA</h3>
-            <p id="Taille"> Taille:Standard</p>
-           
-            <button id="btn" onclick="ajouterAuPanier('3000 FCFA','Standard')">Ajouter au panier</button>
-        </div>
-       
-    </div>
-    <div>
-        <a href="index.html" class="retour">← Retour</a>
-    </div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <section id="hautpage">
+
+
+            <!-- LOGO -->
+
+            <div id="logocontainer">
+
+                <img
+                    id="logoimage"
+                    src="logo.jpeg"
+                    alt="Logo AD CLOTHES"
+                >
+
+            </div>
+
+
+            <!-- LIENS -->
+
+            <div id="liens">
+
+                <a href="index.html">
+                    Accueil
+                </a>
+
+                <a href="contact.html">
+                    Contacts
+                </a>
+
+                <a href="Articles.html">
+                    Services
+                </a>
+
+            </div>
+
+
+            <!-- ICÔNES -->
+
+            <div id="icones">
+
+                <a href="#">
+                    🔍 Recherche
+                </a>
+
+                <a href="#">
+                    👥 Compte
+                </a>
+
+                <a href="#">
+                    🛍️ Panier
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
     <script>
-        const bouton = document.getElementById("btnRetour");
 
-bouton.addEventListener("click", function() {
-    document.body.classList.add("animation-retour");
+        const messages = [
 
-    setTimeout(function() {
-        window.location.href = "index.html";
-    }, 500);
-});
-let panier = [];
+            "Bienvenue dans notre boutique ✨",
 
-function ajouterAuPanier(prix){
-    panier.push({
-        
-        prix:prix
-    })
+            "Découvrez notre Nouvelle Collection Femme 👗",
 
-    console.log(panier);
-}
+            "Profitez de -20% sur tout le site 🔥"
+
+        ];
+
+
+        let index = 0;
+
+
+        const h1Element =
+            document.getElementById("Acceuil");
+
+
+        function changerTexteDyn() {
+
+            index =
+                (index + 1) % messages.length;
+
+            h1Element.textContent =
+                messages[index];
+
+        }
+
+
+        setInterval(
+            changerTexteDyn,
+            3000
+        );
+
+
+        /* Apparition de la bannière */
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                const banniere =
+                    document.getElementById("banner");
+
+                banniere.style.opacity = "1";
+
+            }
+        );
+
     </script>
+
+
 </body>
+
 </html>
