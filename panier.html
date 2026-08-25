@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AD CLOTHES - Mon panier</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f3f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b5e5e;
+        }
+
+        #panier {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .article-panier {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .article-panier p {
+            margin: 6px 0;
+        }
+
+        .supprimer {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #total {
+            max-width: 700px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .retour {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #8b5e5e;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>🛒 Mon panier</h1>
+
+    <div id="panier"></div>
+
+    <div id="total"></div>
+
+    <a href="Articles.html" class="retour">
+        ← Continuer mes achats
+    </a>
+
+
+    <script>
+
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+        function afficherPanier() {
+
+            let contenu = document.getElementById("panier");
+            let totalElement = document.getElementById("total");
+
+            contenu.innerHTML = "";
+
+            let total = 0;
+
+            if (panier.length === 0) {
+
+                contenu.innerHTML = "<p>Votre panier est vide 🛒</p>";
+
+                totalElement.innerHTML = "Total : 0 FCFA";
+
+                return;
+            }
+
+
+            panier.forEach(function(article, index) {
+
+                let sousTotal = article.prix * article.quantite;
+
+                total += sousTotal;
+
+
+                contenu.innerHTML += `
+
+                    <div class="article-panier">
+
+                        <p>
+                            <strong>Article ${index + 1}</strong>
+                        </p>
+
+                        <p>
+                            Prix : ${article.prix} FCFA
+                        </p>
+
+                        <p>
+                            Taille : ${article.taille}
+                        </p>
+
+                        <p>
+                            Quantité : ${article.quantite}
+                        </p>
+
+                        <button
+                            class="supprimer"
+                            onclick="supprimerArticle(${index})">
+
+                            Supprimer
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            totalElement.innerHTML =
+                "Total : " + total + " FCFA";
+        }
+
+
+        function supprimerArticle(index) {
+
+            panier.splice(index, 1);
+
+            localStorage.setItem(
+                "panier",
+                JSON.stringify(panier)
+            );
+
+            afficherPanier();
+        }
+
+
+        afficherPanier();
+
+    </script>
+
+</body>
+
+</html>
