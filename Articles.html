@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>AD CLOTHES - Articles</title>
-
     <style>
-
         /* =========================
            RÉGLAGES GÉNÉRAUX
         ========================= */
-
         * {
             box-sizing: border-box;
         }
-
         html,
         body {
             margin: 0;
             padding: 0;
             width: 100%;
         }
-
         body {
             font-family: Arial, sans-serif;
             background-image: url("backgroundheader.jpeg");
@@ -31,724 +24,463 @@
             background-position: center;
             color: #c8a2c8;
         }
-
-
+        /* =========================
+           BOUTON PANIER
+        ========================= */
+        .voir-panier {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 10px;
+            padding: 10px 20px;
+            background-color: #8b5e5e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .voir-panier:hover {
+            background-color: #6f4545;
+            transform: scale(1.03);
+        }
         /* =========================
            GRILLE DES PRODUITS
         ========================= */
-
         #container-article {
             width: 100%;
             display: grid;
-
-            /* PC : 4 produits par ligne */
             grid-template-columns: repeat(4, 1fr);
-
             gap: 20px;
-
             padding: 20px;
         }
-
-
         /* =========================
            CARTE PRODUIT
         ========================= */
-
         .produit-card {
             width: 100%;
             min-width: 0;
-
             background: white;
-
             border-radius: 10px;
-
             overflow: hidden;
-
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-
             display: flex;
             flex-direction: column;
         }
-
-
         /* =========================
            IMAGE
         ========================= */
-
         .im {
             width: 100%;
-
             height: 350px;
-
             object-fit: cover;
-
             display: block;
         }
-
-
         /* =========================
            INFORMATIONS
         ========================= */
-
         .infos {
             padding: 10px;
-
             display: flex;
-
             flex-direction: column;
-
             gap: 6px;
         }
-
-
         .prix {
             margin: 0;
-
             color: red;
-
             font-size: 17px;
-
             font-weight: bold;
         }
-
-
         .taille {
             margin: 0;
-
             color: #555;
-
             font-size: 14px;
         }
-
-
         /* =========================
-           BOUTON
+           BOUTON AJOUTER
         ========================= */
-
         .btn {
             width: 100%;
-
             border: none;
-
             padding: 9px;
-
             background-color: #8b5e5e;
-
             color: white;
-
             font-size: 13px;
-
             font-weight: bold;
-
             border-radius: 6px;
-
             cursor: pointer;
-
             transition: 0.3s;
         }
-
-
         .btn:hover {
             background-color: #6f4545;
         }
-
-
         /* =========================
            BOUTON RETOUR
         ========================= */
-
         .retour {
             display: inline-block;
-
             margin: 0 20px 30px;
-
             padding: 10px 20px;
-
             background-color: #8b5e5e;
-
             color: white;
-
             text-decoration: none;
-
             border-radius: 25px;
-
             transition: 0.3s;
         }
-
-
         .retour:hover {
             background-color: #6f4545;
-
             transform: translateX(-5px);
         }
-
-
         /* =========================
            📱 TÉLÉPHONE
         ========================= */
-
         @media screen and (max-width: 768px) {
-
             #container-article {
-
                 width: 100%;
-
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-
                 gap: 8px;
-
                 padding: 8px;
             }
-
-
             .produit-card {
                 width: 100%;
-
                 border-radius: 7px;
             }
-
-
             .im {
-
                 width: 100%;
-
                 height: auto;
-
                 aspect-ratio: 3 / 4;
-
                 object-fit: cover;
             }
-
-
             .infos {
-
                 padding: 7px;
-
                 gap: 5px;
             }
-
-
             .prix {
-
                 font-size: 13px;
             }
-
-
             .taille {
-
                 font-size: 11px;
             }
-
-
             .btn {
-
                 width: 100%;
-
                 padding: 7px 4px;
-
                 font-size: 10px;
-
                 border-radius: 5px;
             }
-
-
+            .voir-panier {
+                margin: 10px auto;
+                padding: 8px 15px;
+                font-size: 13px;
+            }
             .retour {
-
                 margin: 5px 8px 20px;
-
                 padding: 8px 14px;
-
                 font-size: 13px;
             }
         }
-
-
         /* =========================
            📱 PETIT TÉLÉPHONE
         ========================= */
-
         @media screen and (max-width: 400px) {
-
             #container-article {
-
                 gap: 6px;
-
                 padding: 6px;
             }
-
-
             .infos {
-
                 padding: 6px;
-
                 gap: 4px;
             }
-
-
             .prix {
-
                 font-size: 12px;
             }
-
-
             .taille {
-
                 font-size: 10px;
             }
-
-
             .btn {
-
                 padding: 6px 3px;
-
                 font-size: 9px;
             }
         }
-
     </style>
-
 </head>
-
-
 <body>
-
-
+    <!-- =========================
+         VOIR LE PANIER
+    ========================= -->
+    <a href="panier.html" class="voir-panier">
+        🛒 Voir mon panier
+    </a>
     <!-- =========================
          PRODUITS
     ========================= -->
-
     <div id="container-article">
-
-
         <!-- PRODUIT 1 -->
-
         <div class="produit-card">
-
             <img class="im" src="I1.jpeg" alt="Produit 1">
-
             <div class="infos">
-
                 <h3 class="prix">
                     4000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('4000 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 1','4000 FCFA','L, XL, M','I1.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 2 -->
-
         <div class="produit-card">
-
             <img class="im" src="I2.jpeg" alt="Produit 2">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3500 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3500 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 2','3500 FCFA','Standard','I2.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 3 -->
-
         <div class="produit-card">
-
             <img class="im" src="I3.jpeg" alt="Produit 3">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 3','3000 FCFA','Standard','I3.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 4 -->
-
         <div class="produit-card">
-
             <img class="im" src="I4.jpeg" alt="Produit 4">
-
             <div class="infos">
-
                 <h3 class="prix">
                     4000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('4000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 4','4000 FCFA','Standard','I4.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 5 -->
-
         <div class="produit-card">
-
             <img class="im" src="I5.jpeg" alt="Produit 5">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3500 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3500 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 5','3500 FCFA','Standard','I5.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 6 -->
-
         <div class="produit-card">
-
             <img class="im" src="I6.jpeg" alt="Produit 6">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 6','3000 FCFA','Standard','I6.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 7 -->
-
         <div class="produit-card">
-
             <img class="im" src="I7.jpeg" alt="Produit 7">
-
             <div class="infos">
-
                 <h3 class="prix">
                     2000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('2000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 7','2000 FCFA','Standard','I7.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 8 -->
-
         <div class="produit-card">
-
             <img class="im" src="I8.jpeg" alt="Produit 8">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 8','3000 FCFA','L, XL, M','I8.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 9 -->
-
         <div class="produit-card">
-
             <img class="im" src="I10.jpeg" alt="Produit 9">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 9','3000 FCFA','Standard','I10.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 10 -->
-
         <div class="produit-card">
-
             <img class="im" src="I11.jpeg" alt="Produit 10">
-
             <div class="infos">
-
                 <h3 class="prix">
                     4000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('4000 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 10','4000 FCFA','L, XL, M','I11.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 11 -->
-
         <div class="produit-card">
-
             <img class="im" src="I20.jpeg" alt="Produit 11">
-
             <div class="infos">
-
                 <h3 class="prix">
                     7500 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('7500 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 11','7500 FCFA','L, XL, M','I20.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 12 -->
-
         <div class="produit-card">
-
             <img class="im" src="I12.jpeg" alt="Produit 12">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 12','3000 FCFA','L, XL, M','I12.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 13 -->
-
         <div class="produit-card">
-
             <img class="im" src="I13.jpeg" alt="Produit 13">
-
             <div class="infos">
-
                 <h3 class="prix">
                     4000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : L, XL, M
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('4000 FCFA','L, XL, M')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 13','4000 FCFA','L, XL, M','I13.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
-
         <!-- PRODUIT 14 -->
-
         <div class="produit-card">
-
             <img class="im" src="I14.jpeg" alt="Produit 14">
-
             <div class="infos">
-
                 <h3 class="prix">
                     3000 FCFA
                 </h3>
-
                 <p class="taille">
                     Taille : Standard
                 </p>
-
                 <button class="btn"
-                    onclick="ajouterAuPanier('3000 FCFA','Standard')">
-
-                    Ajouter au panier
-
+                    onclick="ajouterAuPanier('Produit 14','3000 FCFA','Standard','I14.jpeg')">
+                    Ajouter au panier 🛒
                 </button>
-
             </div>
-
         </div>
-
     </div>
-
-
     <!-- =========================
          RETOUR
     ========================= -->
-
     <a href="index.html" class="retour">
         ← Retour
     </a>
-
-
     <!-- =========================
          JAVASCRIPT
     ========================= -->
-
     <script>
-
-        let panier = [];
-
-        function ajouterAuPanier(prix, taille) {
-
-            panier.push({
-
-                prix: prix,
-                taille: taille
-
+        // Récupérer le panier déjà sauvegardé
+        let panier = JSON.parse(localStorage.getItem("panier")) || [];
+        function ajouterAuPanier(nom, prix, taille, image) {
+            // Transformer "4000 FCFA" en nombre
+            let prixNombre = parseInt(prix);
+            // Chercher si le produit existe déjà
+            let produitExiste = panier.find(function(article) {
+                return article.nom === nom;
             });
-
+            // Si le produit existe déjà
+            if (produitExiste) {
+                produitExiste.quantite += 1;
+            }
+            // Sinon, créer le produit
+            else {
+                panier.push({
+                    nom: nom,
+                    prix: prixNombre,
+                    taille: taille,
+                    image: image,
+                    quantite: 1
+                });
+            }
+            // Sauvegarder le panier
+            localStorage.setItem(
+                "panier",
+                JSON.stringify(panier)
+            );
+            alert(
+                "✅ " + nom + " a été ajouté au panier !"
+            );
             console.log(panier);
-
-            alert("Article ajouté au panier 🛍️");
-
         }
-
     </script>
-
-
 </body>
-
 </html>
