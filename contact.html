@@ -2,20 +2,21 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>AD CLOTHES - Paiement</title>
 
-    <style>
 
-        /* =========================
-           RÉGLAGES GÉNÉRAUX
-        ========================= */
+    <style>
 
         * {
             box-sizing: border-box;
         }
+
 
         body {
             margin: 0;
@@ -49,7 +50,7 @@
 
 
         /* =========================
-           CONTENEUR PRINCIPAL
+           CONTENEUR
         ========================= */
 
         .container {
@@ -87,12 +88,36 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 25px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
         .recap h2 {
             margin-top: 0;
         }
+
+
+        .article-recap {
+            background: #f8f3f5;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border-left: 4px solid #8b5e5e;
+        }
+
+        .article-recap h3 {
+            margin-top: 0;
+            color: #8b5e5e;
+        }
+
+        .article-recap p {
+            margin: 7px 0;
+        }
+
+
+        .sous-total {
+            font-weight: bold;
+        }
+
 
         .total {
             display: flex;
@@ -107,7 +132,7 @@
 
 
         /* =========================
-           INFORMATIONS CLIENT
+           CLIENT
         ========================= */
 
         .client {
@@ -115,7 +140,7 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
         .client h2 {
@@ -154,7 +179,7 @@
 
 
         /* =========================
-           MOYENS DE PAIEMENT
+           PAIEMENT
         ========================= */
 
         #payement {
@@ -163,6 +188,7 @@
             gap: 20px;
         }
 
+
         .payment-card {
             padding: 25px;
             min-height: 200px;
@@ -170,12 +196,12 @@
             color: white;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .payment-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
         }
 
         .payment-card h2 {
@@ -187,26 +213,14 @@
             line-height: 1.6;
         }
 
-        .payment-card input {
-            margin-right: 8px;
-        }
-
-
-        /* ORANGE */
 
         #orange {
             background: orangered;
         }
 
-
-        /* MOOV */
-
         #moove {
             background: blueviolet;
         }
-
-
-        /* WAVE */
 
         #wave {
             background: #20c997;
@@ -214,7 +228,7 @@
 
 
         /* =========================
-           BOUTON CONFIRMATION
+           CONFIRMATION
         ========================= */
 
         .confirmer {
@@ -240,7 +254,7 @@
 
 
         /* =========================
-           MESSAGE DE CONFIRMATION
+           MESSAGE
         ========================= */
 
         #message {
@@ -257,7 +271,7 @@
 
 
         /* =========================
-           BOUTON RETOUR
+           RETOUR
         ========================= */
 
         .retour {
@@ -279,7 +293,7 @@
 
 
         /* =========================
-           RESPONSIVE TÉLÉPHONE
+           MOBILE
         ========================= */
 
         @media (max-width: 768px) {
@@ -305,12 +319,9 @@
             .titre-section h2 {
                 font-size: 22px;
             }
+
         }
 
-
-        /* =========================
-           PETITS TÉLÉPHONES
-        ========================= */
 
         @media (max-width: 400px) {
 
@@ -335,18 +346,20 @@
             .confirmer {
                 font-size: 15px;
             }
+
+            .total {
+                font-size: 17px;
+            }
+
         }
 
     </style>
+
 </head>
 
 
 <body>
 
-
-    <!-- =========================
-         EN-TÊTE
-    ========================= -->
 
     <header>
 
@@ -370,36 +383,29 @@
 
                 <h2>🛒 Récapitulatif de la commande</h2>
 
-                <p>Vérifiez votre commande avant de procéder au paiement.</p>
+                <p>
+                    Voici les articles que vous avez sélectionnés.
+                </p>
 
             </div>
 
 
-            <!-- 
-            Tu pourras remplacer cette partie
-            par les produits récupérés depuis ton panier.
-            -->
+            <!-- LES ARTICLES SERONT AJOUTÉS ICI PAR JS -->
 
-            <p>
-                <strong>Produit :</strong>
-                Votre article sélectionné
-            </p>
+            <div id="recapitulatif"></div>
 
-            <p>
-                <strong>Quantité :</strong>
-                1
-            </p>
 
             <div class="total">
 
                 <span>Total à payer</span>
 
-                <span>4 000 FCFA</span>
+                <span id="totalCommande">
+                    0 FCFA
+                </span>
 
             </div>
 
         </section>
-
 
 
         <!-- =========================
@@ -410,9 +416,12 @@
 
             <h2>👤 Informations du client</h2>
 
+
             <div class="form-group">
 
-                <label for="nom">Nom et prénom</label>
+                <label for="nom">
+                    Nom et prénom
+                </label>
 
                 <input
                     type="text"
@@ -425,7 +434,9 @@
 
             <div class="form-group">
 
-                <label for="telephone">Numéro de téléphone</label>
+                <label for="telephone">
+                    Numéro de téléphone
+                </label>
 
                 <input
                     type="tel"
@@ -438,7 +449,9 @@
 
             <div class="form-group">
 
-                <label for="adresse">Lieu de livraison</label>
+                <label for="adresse">
+                    Lieu de livraison
+                </label>
 
                 <textarea
                     id="adresse"
@@ -450,16 +463,17 @@
         </section>
 
 
-
         <!-- =========================
-             MOYENS DE PAIEMENT
+             PAIEMENT
         ========================= -->
 
         <div class="titre-section">
 
             <h2>💳 MODE DE PAIEMENT</h2>
 
-            <p>Choisissez votre moyen de paiement</p>
+            <p>
+                Choisissez votre moyen de paiement
+            </p>
 
         </div>
 
@@ -467,48 +481,52 @@
         <div id="payement">
 
 
-            <!-- ORANGE MONEY -->
-
             <div class="payment-card" id="orange">
 
                 <h2>🟠 Orange Money</h2>
 
                 <p>
+
                     <input
                         type="radio"
                         name="paiement"
                         value="Orange Money"
                     >
+
                     Sélectionner Orange Money
+
                 </p>
 
                 <p>
-                    Effectuez votre paiement avec le code indiqué
-                    par votre boutique.
+                    Effectuez votre paiement avec le code
+                    indiqué par votre boutique.
                 </p>
 
                 <p>
+
                     <strong>Code :</strong><br>
+
                     *144*10*65316311*montant#
+
                 </p>
 
             </div>
 
-
-
-            <!-- MOOV MONEY -->
 
             <div class="payment-card" id="moove">
 
                 <h2>🟣 Moov Money</h2>
 
                 <p>
+
                     <input
                         type="radio"
                         name="paiement"
                         value="Moov Money"
                     >
+
                     Sélectionner Moov Money
+
                 </p>
 
                 <p>
@@ -517,27 +535,30 @@
                 </p>
 
                 <p>
+
                     <strong>Code :</strong><br>
+
                     *555*
+
                 </p>
 
             </div>
 
-
-
-            <!-- WAVE -->
 
             <div class="payment-card" id="wave">
 
                 <h2>🟢 Wave</h2>
 
                 <p>
+
                     <input
                         type="radio"
                         name="paiement"
                         value="Wave"
                     >
+
                     Sélectionner Wave
+
                 </p>
 
                 <p>
@@ -546,8 +567,11 @@
                 </p>
 
                 <p>
+
                     <strong>Code :</strong><br>
+
                     À compléter
+
                 </p>
 
             </div>
@@ -555,48 +579,136 @@
         </div>
 
 
-
-        <!-- =========================
-             CONFIRMATION
-        ========================= -->
-
         <button
             class="confirmer"
             onclick="confirmerCommande()"
         >
+
             ✅ CONFIRMER MA COMMANDE
+
         </button>
 
 
         <div id="message"></div>
 
 
-
-        <!-- =========================
-             RETOUR
-        ========================= -->
-
         <a
             href="panier.html"
             class="retour"
         >
+
             ← Retour au panier
+
         </a>
 
 
     </main>
 
 
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
     <script>
+
+
+        /* =========================
+           RÉCUPÉRER LE PANIER
+        ========================= */
+
+        let panier =
+            JSON.parse(localStorage.getItem("panier")) || [];
+
+
+        /* =========================
+           AFFICHER LE RÉCAPITULATIF
+        ========================= */
+
+        function afficherRecapitulatif() {
+
+            const recap =
+                document.getElementById("recapitulatif");
+
+            const totalCommande =
+                document.getElementById("totalCommande");
+
+
+            recap.innerHTML = "";
+
+            let total = 0;
+
+
+            if (panier.length === 0) {
+
+                recap.innerHTML =
+                    "<p>Votre panier est vide 🛒</p>";
+
+                totalCommande.textContent =
+                    "0 FCFA";
+
+                return;
+            }
+
+
+            panier.forEach(function(article, index) {
+
+                const prix =
+                    Number(article.prix);
+
+                const quantite =
+                    Number(article.quantite);
+
+                const sousTotal =
+                    prix * quantite;
+
+                total += sousTotal;
+
+
+                recap.innerHTML += `
+
+                    <div class="article-recap">
+
+                        <h3>
+                            Article ${index + 1}
+                        </h3>
+
+                        <p>
+                            <strong>Prix :</strong>
+                            ${prix} FCFA
+                        </p>
+
+                        <p>
+                            <strong>Taille :</strong>
+                            ${article.taille}
+                        </p>
+
+                        <p>
+                            <strong>Quantité :</strong>
+                            ${quantite}
+                        </p>
+
+                        <p class="sous-total">
+                            <strong>Sous-total :</strong>
+                            ${sousTotal} FCFA
+                        </p>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            totalCommande.textContent =
+                total + " FCFA";
+
+        }
+
+
+        /* =========================
+           CONFIRMER LA COMMANDE
+        ========================= */
 
         function confirmerCommande() {
 
-            const nom = document.getElementById("nom").value.trim();
+            const nom =
+                document.getElementById("nom").value.trim();
 
             const telephone =
                 document.getElementById("telephone").value.trim();
@@ -610,47 +722,65 @@
                 );
 
 
-            /* Vérification du nom */
+            if (panier.length === 0) {
+
+                alert("Votre panier est vide.");
+
+                return;
+            }
+
 
             if (nom === "") {
 
-                alert("Veuillez entrer votre nom et prénom.");
+                alert(
+                    "Veuillez entrer votre nom et prénom."
+                );
 
                 return;
             }
 
-
-            /* Vérification du téléphone */
 
             if (telephone === "") {
 
-                alert("Veuillez entrer votre numéro de téléphone.");
+                alert(
+                    "Veuillez entrer votre numéro de téléphone."
+                );
 
                 return;
             }
 
-
-            /* Vérification de l'adresse */
 
             if (adresse === "") {
 
-                alert("Veuillez indiquer votre lieu de livraison.");
+                alert(
+                    "Veuillez indiquer votre lieu de livraison."
+                );
 
                 return;
             }
 
-
-            /* Vérification du paiement */
 
             if (!paiement) {
 
-                alert("Veuillez choisir un moyen de paiement.");
+                alert(
+                    "Veuillez choisir un moyen de paiement."
+                );
 
                 return;
             }
 
 
-            /* Affichage du message */
+            let total = 0;
+
+
+            panier.forEach(function(article) {
+
+                total +=
+                    Number(article.prix) *
+                    Number(article.quantite);
+
+            });
+
 
             const message =
                 document.getElementById("message");
@@ -660,20 +790,32 @@
 
 
             message.innerHTML =
+
                 "🎉 Merci " + nom +
                 " ! Votre commande a été enregistrée.<br><br>" +
+
+                "Total : " + total + " FCFA<br>" +
+
                 "Moyen de paiement : " +
                 paiement.value;
 
 
-            /* Retour en haut de la page */
-
             window.scrollTo({
+
                 top: 0,
+
                 behavior: "smooth"
+
             });
 
         }
+
+
+        /* =========================
+           LANCER LE RÉCAPITULATIF
+        ========================= */
+
+        afficherRecapitulatif();
 
     </script>
 
