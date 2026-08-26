@@ -9,6 +9,10 @@
 
     <style>
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f8f3f5;
@@ -23,59 +27,105 @@
 
         #panier {
             max-width: 700px;
-            margin: auto; 
+            margin: auto;
         }
 
         .article-panier {
             background: white;
-            padding: 15px;
-            margin-bottom: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
+        .article-panier h3 {
+            color: #8b5e5e;
+            margin-top: 0;
+        }
+
         .article-panier p {
-            margin: 6px 0;
+            margin: 7px 0;
+        }
+
+        .sous-total {
+            font-weight: bold;
+            color: #8b5e5e;
         }
 
         .supprimer {
             background: #c0392b;
             color: white;
             border: none;
-            padding: 7px 12px;
+            padding: 8px 14px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .supprimer:hover {
+            background: #922b21;
         }
 
         #total {
             max-width: 700px;
             margin: 20px auto;
             background: white;
-            padding: 15px;
+            padding: 18px;
             border-radius: 10px;
             font-size: 20px;
             font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .retour,
+        .payement {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 11px 22px;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: 0.3s;
         }
 
         .retour {
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-            padding: 10px 20px;
             background: #8b5e5e;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
         }
-         .payement {
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background: #8b5e5e;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
+
+        .payement {
+            background: #1f1f1f;
+        }
+
+        .retour:hover,
+        .payement:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .article-panier {
+                padding: 15px;
+            }
+
+            #total {
+                font-size: 18px;
+            }
+
+            .retour,
+            .payement {
+                width: 100%;
+                text-align: center;
+            }
         }
 
     </style>
@@ -93,6 +143,7 @@
     <a href="Articles.html" class="retour">
         ← Continuer mes achats
     </a>
+
     <a href="contact.html" class="payement">
         Valider mon panier 🔥➡️
     </a>
@@ -101,6 +152,7 @@
     <script>
 
         let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
 
         function afficherPanier() {
 
@@ -111,11 +163,14 @@
 
             let total = 0;
 
+
             if (panier.length === 0) {
 
-                contenu.innerHTML = "<p>Votre panier est vide 🛒</p>";
+                contenu.innerHTML =
+                    "<p style='text-align:center;'>Votre panier est vide 🛒</p>";
 
-                totalElement.innerHTML = "Total : 0 FCFA";
+                totalElement.innerHTML =
+                    "Total : 0 FCFA";
 
                 return;
             }
@@ -123,7 +178,8 @@
 
             panier.forEach(function(article, index) {
 
-                let sousTotal = article.prix * article.quantite;
+                let sousTotal =
+                    Number(article.prix) * Number(article.quantite);
 
                 total += sousTotal;
 
@@ -132,20 +188,28 @@
 
                     <div class="article-panier">
 
+                        <h3>
+                            Article ${index + 1}
+                        </h3>
+
                         <p>
-                            <strong>Article ${index + 1}</strong>
+                            <strong>Prix :</strong>
+                            ${article.prix} FCFA
                         </p>
 
                         <p>
-                            Prix : ${article.prix} FCFA
+                            <strong>Taille :</strong>
+                            ${article.taille}
                         </p>
 
                         <p>
-                            Taille : ${article.taille}
+                            <strong>Quantité :</strong>
+                            ${article.quantite}
                         </p>
 
-                        <p>
-                            Quantité : ${article.quantite}
+                        <p class="sous-total">
+                            Sous-total :
+                            ${sousTotal} FCFA
                         </p>
 
                         <button
