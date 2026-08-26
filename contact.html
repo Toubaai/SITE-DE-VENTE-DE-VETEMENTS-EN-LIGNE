@@ -1,1 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AD CLOTHES - Paiement</title>
+
+    <style>
+
+        /* =========================
+           RÉGLAGES GÉNÉRAUX
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+
+        /* =========================
+           EN-TÊTE
+        ========================= */
+
+        header {
+            background: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #ddd;
+        }
+
+
+        /* =========================
+           CONTENEUR PRINCIPAL
+        ========================= */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+
+        /* =========================
+           TITRES
+        ========================= */
+
+        .titre-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .titre-section h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .titre-section p {
+            color: #666;
+        }
+
+
+        /* =========================
+           RÉCAPITULATIF
+        ========================= */
+
+        .recap {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .recap h2 {
+            margin-top: 0;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           INFORMATIONS CLIENT
+        ========================= */
+
+        .client {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .client h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #8b5e5e;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+
+        /* =========================
+           MOYENS DE PAIEMENT
+        ========================= */
+
+        #payement {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .payment-card {
+            padding: 25px;
+            min-height: 200px;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .payment-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-card h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .payment-card p {
+            line-height: 1.6;
+        }
+
+        .payment-card input {
+            margin-right: 8px;
+        }
+
+
+        /* ORANGE */
+
+        #orange {
+            background: orangered;
+        }
+
+
+        /* MOOV */
+
+        #moove {
+            background: blueviolet;
+        }
+
+
+        /* WAVE */
+
+        #wave {
+            background: #20c997;
+        }
+
+
+        /* =========================
+           BOUTON CONFIRMATION
+        ========================= */
+
+        .confirmer {
+            display: block;
+            width: 100%;
+            max-width: 450px;
+            margin: 35px auto 15px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            background: #1f1f1f;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .confirmer:hover {
+            background: #8b5e5e;
+            transform: scale(1.02);
+        }
+
+
+        /* =========================
+           MESSAGE DE CONFIRMATION
+        ========================= */
+
+        #message {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 18px;
+            border-radius: 10px;
+            background: #d4edda;
+            color: #155724;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BOUTON RETOUR
+        ========================= */
+
+        .retour {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 40px;
+            padding: 10px 25px;
+            background: #8b5e5e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .retour:hover {
+            background: #5f3f3f;
+            transform: translateX(-3px);
+        }
+
+
+        /* =========================
+           RESPONSIVE TÉLÉPHONE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            #payement {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .payment-card {
+                min-height: auto;
+            }
+
+            .titre-section h2 {
+                font-size: 22px;
+            }
+        }
+
+
+        /* =========================
+           PETITS TÉLÉPHONES
+        ========================= */
+
+        @media (max-width: 400px) {
+
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 21px;
+            }
+
+            .recap,
+            .client,
+            .payment-card {
+                padding: 17px;
+            }
+
+            .payment-card h2 {
+                font-size: 19px;
+            }
+
+            .confirmer {
+                font-size: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         EN-TÊTE
+    ========================= -->
+
+    <header>
+
+        <h1>AD CLOTHES</h1>
+
+        <p>Validation de votre commande</p>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- =========================
+             RÉCAPITULATIF
+        ========================= -->
+
+        <section class="recap">
+
+            <div class="titre-section">
+
+                <h2>🛒 Récapitulatif de la commande</h2>
+
+                <p>Vérifiez votre commande avant de procéder au paiement.</p>
+
+            </div>
+
+
+            <!-- 
+            Tu pourras remplacer cette partie
+            par les produits récupérés depuis ton panier.
+            -->
+
+            <p>
+                <strong>Produit :</strong>
+                Votre article sélectionné
+            </p>
+
+            <p>
+                <strong>Quantité :</strong>
+                1
+            </p>
+
+            <div class="total">
+
+                <span>Total à payer</span>
+
+                <span>4 000 FCFA</span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             INFORMATIONS CLIENT
+        ========================= -->
+
+        <section class="client">
+
+            <h2>👤 Informations du client</h2>
+
+            <div class="form-group">
+
+                <label for="nom">Nom et prénom</label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    placeholder="Entrez votre nom et prénom"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="telephone">Numéro de téléphone</label>
+
+                <input
+                    type="tel"
+                    id="telephone"
+                    placeholder="Ex : 70 XX XX XX"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adresse">Lieu de livraison</label>
+
+                <textarea
+                    id="adresse"
+                    placeholder="Indiquez votre lieu de livraison"
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             MOYENS DE PAIEMENT
+        ========================= -->
+
+        <div class="titre-section">
+
+            <h2>💳 MODE DE PAIEMENT</h2>
+
+            <p>Choisissez votre moyen de paiement</p>
+
+        </div>
+
+
+        <div id="payement">
+
+
+            <!-- ORANGE MONEY -->
+
+            <div class="payment-card" id="orange">
+
+                <h2>🟠 Orange Money</h2>
+
+                <p>
+                    <input
+                        type="radio"
+                        name="paiement"
+                        value="Orange Money"
+                    >
+                    Sélectionner Orange Money
+                </p>
+
+                <p>
+                    Effectuez votre paiement avec le code indiqué
+                    par votre boutique.
+                </p>
+
+                <p>
+                    <strong>Code :</strong><br>
+                    *144*10*65316311*montant#
+                </p>
+
+            </div>
+
+
+
+            <!-- MOOV MONEY -->
+
+            <div class="payment-card" id="moove">
+
+                <h2>🟣 Moov Money</h2>
+
+                <p>
+                    <input
+                        type="radio"
+                        name="paiement"
+                        value="Moov Money"
+                    >
+                    Sélectionner Moov Money
+                </p>
+
+                <p>
+                    Effectuez votre paiement avec votre compte
+                    Moov Money.
+                </p>
+
+                <p>
+                    <strong>Code :</strong><br>
+                    *555*
+                </p>
+
+            </div>
+
+
+
+            <!-- WAVE -->
+
+            <div class="payment-card" id="wave">
+
+                <h2>🟢 Wave</h2>
+
+                <p>
+                    <input
+                        type="radio"
+                        name="paiement"
+                        value="Wave"
+                    >
+                    Sélectionner Wave
+                </p>
+
+                <p>
+                    Effectuez votre paiement avec votre compte
+                    Wave.
+                </p>
+
+                <p>
+                    <strong>Code :</strong><br>
+                    À compléter
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             CONFIRMATION
+        ========================= -->
+
+        <button
+            class="confirmer"
+            onclick="confirmerCommande()"
+        >
+            ✅ CONFIRMER MA COMMANDE
+        </button>
+
+
+        <div id="message"></div>
+
+
+
+        <!-- =========================
+             RETOUR
+        ========================= -->
+
+        <a
+            href="panier.html"
+            class="retour"
+        >
+            ← Retour au panier
+        </a>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function confirmerCommande() {
+
+            const nom = document.getElementById("nom").value.trim();
+
+            const telephone =
+                document.getElementById("telephone").value.trim();
+
+            const adresse =
+                document.getElementById("adresse").value.trim();
+
+            const paiement =
+                document.querySelector(
+                    'input[name="paiement"]:checked'
+                );
+
+
+            /* Vérification du nom */
+
+            if (nom === "") {
+
+                alert("Veuillez entrer votre nom et prénom.");
+
+                return;
+            }
+
+
+            /* Vérification du téléphone */
+
+            if (telephone === "") {
+
+                alert("Veuillez entrer votre numéro de téléphone.");
+
+                return;
+            }
+
+
+            /* Vérification de l'adresse */
+
+            if (adresse === "") {
+
+                alert("Veuillez indiquer votre lieu de livraison.");
+
+                return;
+            }
+
+
+            /* Vérification du paiement */
+
+            if (!paiement) {
+
+                alert("Veuillez choisir un moyen de paiement.");
+
+                return;
+            }
+
+
+            /* Affichage du message */
+
+            const message =
+                document.getElementById("message");
+
+
+            message.style.display = "block";
+
+
+            message.innerHTML =
+                "🎉 Merci " + nom +
+                " ! Votre commande a été enregistrée.<br><br>" +
+                "Moyen de paiement : " +
+                paiement.value;
+
+
+            /* Retour en haut de la page */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
