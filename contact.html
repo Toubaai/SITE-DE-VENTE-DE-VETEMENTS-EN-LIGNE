@@ -390,8 +390,6 @@
             </div>
 
 
-            <!-- LES ARTICLES SERONT AJOUTÉS ICI PAR JS -->
-
             <div id="recapitulatif"></div>
 
 
@@ -435,7 +433,7 @@
             <div class="form-group">
 
                 <label for="telephone">
-                    Numéro de dépot
+                    Numéro de téléphone
                 </label>
 
                 <input
@@ -481,6 +479,8 @@
         <div id="payement">
 
 
+            <!-- ORANGE MONEY -->
+
             <div class="payment-card" id="orange">
 
                 <h2>🟠 Orange Money</h2>
@@ -513,6 +513,8 @@
             </div>
 
 
+            <!-- MOOV MONEY -->
+
             <div class="payment-card" id="moove">
 
                 <h2>🟣 Moov Money</h2>
@@ -544,6 +546,8 @@
 
             </div>
 
+
+            <!-- WAVE -->
 
             <div class="payment-card" id="wave">
 
@@ -579,6 +583,10 @@
         </div>
 
 
+        <!-- =========================
+             BOUTON
+        ========================= -->
+
         <button
             class="confirmer"
             onclick="confirmerCommande()"
@@ -589,8 +597,16 @@
         </button>
 
 
+        <!-- =========================
+             MESSAGE
+        ========================= -->
+
         <div id="message"></div>
 
+
+        <!-- =========================
+             RETOUR
+        ========================= -->
 
         <a
             href="panier.html"
@@ -605,37 +621,68 @@
     </main>
 
 
+    <!-- =========================
+         JAVASCRIPT + FIREBASE
+    ========================= -->
+
     <script type="module">
 
         /* =========================
            IMPORT FIREBASE
         ========================= */
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-        // Configuration Firebase
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
+        import {
+            getFirestore,
+            collection,
+            addDoc
+        }
+        from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+
+        /* =========================
+           CONFIGURATION FIREBASE
+        ========================= */
+
         const firebaseConfig = {
+
             apiKey: "AIzaSyCv-gy_ixf-lrQQyfDxLvhzyVWz7dH6H8s",
+
             authDomain: "ad-clothes.firebaseapp.com",
+
             projectId: "ad-clothes",
+
             storageBucket: "ad-clothes.firebasestorage.app",
+
             messagingSenderId: "816151990748",
+
             appId: "1:816151990748:web:a31be220268360727cbf19",
+
             measurementId: "G-SNGHW0ZW6E"
+
         };
 
-        // Initialisation
+
+        /* =========================
+           INITIALISATION FIREBASE
+        ========================= */
+
         const app = initializeApp(firebaseConfig);
+
         const db = getFirestore(app);
-        const analytics = getAnalytics(app);
+
+
+        console.log("Firebase est connecté.");
 
 
         /* =========================
            RÉCUPÉRER LE PANIER
         ========================= */
 
-        window.panier = JSON.parse(localStorage.getItem("panier")) || [];
+        window.panier =
+            JSON.parse(localStorage.getItem("panier")) || [];
 
 
         /* =========================
@@ -644,114 +691,334 @@
 
         function afficherRecapitulatif() {
 
-            const recap = document.getElementById("recapitulatif");
-            const totalCommande = document.getElementById("totalCommande");
+            const recap =
+                document.getElementById("recapitulatif");
+
+            const totalCommande =
+                document.getElementById("totalCommande");
+
 
             recap.innerHTML = "";
+
             let total = 0;
 
+
+            /* PANIER VIDE */
+
             if (window.panier.length === 0) {
-                recap.innerHTML = "<p>Votre panier est vide 🛒</p>";
-                totalCommande.textContent = "0 FCFA";
+
+                recap.innerHTML =
+                    "<p>Votre panier est vide 🛒</p>";
+
+                totalCommande.textContent =
+                    "0 FCFA";
+
                 return;
             }
 
+
+            /* AFFICHAGE DES ARTICLES */
+
             window.panier.forEach(function(article, index) {
-                const prix = Number(article.prix);
-                const quantite = Number(article.quantite);
-                const sousTotal = prix * quantite;
+
+                const prix =
+                    Number(article.prix) || 0;
+
+                const quantite =
+                    Number(article.quantite) || 1;
+
+                const sousTotal =
+                    prix * quantite;
+
 
                 total += sousTotal;
 
+
                 recap.innerHTML += `
+
                     <div class="article-recap">
-                        <h3>Article ${index + 1}</h3>
-                        <p><strong>Prix :</strong> ${prix} FCFA</p>
-                        <p><strong>Taille :</strong> ${article.taille}</p>
-                        <p><strong>Quantité :</strong> ${quantite}</p>
-                        <p class="sous-total"><strong>Sous-total :</strong> ${sousTotal} FCFA</p>
+
+                        <h3>
+                            Article ${index + 1}
+                        </h3>
+
+                        <p>
+                            <strong>Prix :</strong>
+                            ${prix} FCFA
+                        </p>
+
+                        <p>
+                            <strong>Taille :</strong>
+                            ${article.taille || "Non précisée"}
+                        </p>
+
+                        <p>
+                            <strong>Quantité :</strong>
+                            ${quantite}
+                        </p>
+
+                        <p class="sous-total">
+
+                            <strong>Sous-total :</strong>
+                            ${sousTotal} FCFA
+
+                        </p>
+
                     </div>
+
                 `;
+
             });
 
-            totalCommande.textContent = total + " FCFA";
+
+            totalCommande.textContent =
+                total + " FCFA";
+
         }
 
 
         /* =========================
-           CONFIRMER LA COMMANDE & FIREBASE
+           CONFIRMER LA COMMANDE
         ========================= */
 
-        window.confirmerCommande = async function() {
+        window.confirmerCommande =
+            async function() {
 
-            const nom = document.getElementById("nom").value.trim();
-            const telephone = document.getElementById("telephone").value.trim();
-            const adresse = document.getElementById("adresse").value.trim();
-            const paiement = document.querySelector('input[name="paiement"]:checked');
+
+            /* =========================
+               RÉCUPÉRER LES INFORMATIONS
+            ========================= */
+
+            const nom =
+                document.getElementById("nom")
+                .value.trim();
+
+
+            const telephone =
+                document.getElementById("telephone")
+                .value.trim();
+
+
+            const adresse =
+                document.getElementById("adresse")
+                .value.trim();
+
+
+            const paiement =
+                document.querySelector(
+                    'input[name="paiement"]:checked'
+                );
+
+
+            /* =========================
+               VÉRIFICATIONS
+            ========================= */
 
             if (window.panier.length === 0) {
-                alert("Votre panier est vide.");
+
+                alert(
+                    "Votre panier est vide."
+                );
+
                 return;
             }
+
 
             if (nom === "") {
-                alert("Veuillez entrer votre nom et prénom.");
+
+                alert(
+                    "Veuillez entrer votre nom et prénom."
+                );
+
                 return;
             }
+
 
             if (telephone === "") {
-                alert("Veuillez entrer votre numéro de depot.");
+
+                alert(
+                    "Veuillez entrer votre numéro de téléphone."
+                );
+
                 return;
             }
+
 
             if (adresse === "") {
-                alert("Veuillez indiquer votre lieu de livraison.");
+
+                alert(
+                    "Veuillez indiquer votre lieu de livraison."
+                );
+
                 return;
             }
+
 
             if (!paiement) {
-                alert("Veuillez choisir un moyen de paiement.");
+
+                alert(
+                    "Veuillez choisir un moyen de paiement."
+                );
+
                 return;
             }
 
+
+            /* =========================
+               CALCUL DU TOTAL
+            ========================= */
+
             let total = 0;
+
+
             window.panier.forEach(function(article) {
-                total += Number(article.prix) * Number(article.quantite);
+
+                const prix =
+                    Number(article.prix) || 0;
+
+                const quantite =
+                    Number(article.quantite) || 1;
+
+
+                total += prix * quantite;
+
             });
 
+
+            /* =========================
+               ENREGISTREMENT FIRESTORE
+            ========================= */
+
             try {
-                // Enregistrement dans Firestore (collection "orders")
-                const docRef = await addDoc(collection(db, "orders"), {
-                    nomClient: nom,
-                    telephone: telephone,
-                    adresseLivraison: adresse,
-                    moyenPaiement: paiement.value,
-                    articles: window.panier,
-                    totalCommande: total,
-                    date: new Date()
-                });
 
-                console.log("Commande enregistrée avec l'ID : ", docRef.id);
+                console.log(
+                    "Tentative d'enregistrement..."
+                );
 
-                const message = document.getElementById("message");
-                message.style.display = "block";
+
+                const docRef = await addDoc(
+
+                    collection(db, "orders"),
+
+                    {
+
+                        nomClient: nom,
+
+                        telephone: telephone,
+
+                        adresseLivraison: adresse,
+
+                        moyenPaiement:
+                            paiement.value,
+
+                        articles:
+                            window.panier,
+
+                        totalCommande:
+                            total,
+
+                        date:
+                            new Date()
+
+                    }
+
+                );
+
+
+                /* =========================
+                   SUCCÈS
+                ========================= */
+
+                console.log(
+                    "Commande enregistrée avec l'ID :",
+                    docRef.id
+                );
+
+
+                const message =
+                    document.getElementById("message");
+
+
+                message.style.display =
+                    "block";
+
+
                 message.innerHTML =
-                    "🎉 Merci " + nom + " ! Votre commande a été enregistrée.<br><br>" +
-                    "Total : " + total + " FCFA<br>" +
-                    "Moyen de paiement : " + paiement.value;
+
+                    "🎉 Merci " +
+                    nom +
+                    " ! Votre commande a été enregistrée." +
+                    "<br><br>" +
+
+                    "Numéro de commande : " +
+                    docRef.id +
+                    "<br><br>" +
+
+                    "Total : " +
+                    total +
+                    " FCFA" +
+                    "<br>" +
+
+                    "Moyen de paiement : " +
+                    paiement.value;
+
+
+                /* =========================
+                   REMONTER EN HAUT
+                ========================= */
 
                 window.scrollTo({
+
                     top: 0,
+
                     behavior: "smooth"
+
                 });
 
-                // Vider le panier après validation
-                localStorage.removeItem("panier");
 
-            } catch (error) {
-                console.error("Erreur lors de l'enregistrement de la commande : ", error);
-                alert("Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.");
+                /* =========================
+                   VIDER LE PANIER
+                ========================= */
+
+                localStorage.removeItem(
+                    "panier"
+                );
+
+
+                window.panier = [];
+
+
             }
+
+
+            /* =========================
+               ERREUR FIREBASE
+            ========================= */
+
+            catch (error) {
+
+                console.error(
+                    "ERREUR FIREBASE :",
+                    error
+                );
+
+
+                alert(
+
+                    "Erreur Firebase :\n\n" +
+
+                    "Code : " +
+                    error.code +
+
+                    "\n\n" +
+
+                    "Message : " +
+                    error.message
+
+                );
+
+            }
+
         };
 
 
@@ -761,7 +1028,9 @@
 
         afficherRecapitulatif();
 
+
     </script>
+
 
 </body>
 
